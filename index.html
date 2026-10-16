@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Azlan Residential Suites</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=Jost:wght@300;400;500;600&display=swap">
+<style>
+/* Layout: a single editorial column; a brass line-drawn skyline joins the four cities, then residences, suites, amenities and a live reservation panel. */
+:root {
+  --bg: #eef0ec;
+  --surface: #e2e7e2;
+  --ink: #10282a;
+  --muted: #4b5d5c;
+  --brass: #8a6626;
+  --line: #c3cbc5;
+  --deep: #10282a;
+  --on-deep: #efe9da;
+  --display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --body: "Jost", "Futura", "Century Gothic", system-ui, sans-serif;
+  --step-0: 1rem;
+  --step-1: 1.25rem;
+  --step-2: 1.75rem;
+  --step-3: clamp(2rem, 4vw, 2.75rem);
+  --step-4: clamp(2.75rem, 8vw, 6.25rem);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b1615; --surface: #12211f; --ink: #e9e5d9; --muted: #9daaa6;
+    --brass: #d0aa66; --line: #273a37; --deep: #060e0d; --on-deep: #efe9da;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0b1615; --surface: #12211f; --ink: #e9e5d9; --muted: #9daaa6;
+  --brass: #d0aa66; --line: #273a37; --deep: #060e0d; --on-deep: #efe9da;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--body); font-size: 1.0625rem; line-height: 1.6; font-weight: 400;
+}
+.wrap { max-width: 1180px; margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.08; text-wrap: balance; margin: 0; }
+p { margin: 0; }
+.eyebrow {
+  font-size: .78rem; letter-spacing: .22em; text-transform: uppercase; font-weight: 500; color: var(--brass);
+}
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+
+/* Header */
+header.top { border-bottom: 1px solid var(--line); }
+header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 18px; flex-wrap: wrap; }
+.mark { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.mark-monogram {
+  width: 40px; height: 40px; border: 1px solid var(--brass); display: grid; place-items: center;
+  font-family: var(--display); font-size: 1.35rem; color: var(--brass); font-style: italic;
+}
+.mark-name { font-family: var(--display); font-size: 1.1rem; letter-spacing: .04em; line-height: 1.1; }
+.mark-name small { display: block; font-family: var(--body); font-size: .66rem; letter-spacing: .3em; text-transform: uppercase; color: var(--muted); }
+nav.links { display: flex; gap: clamp(14px, 3vw, 32px); flex-wrap: wrap; font-size: .82rem; letter-spacing: .16em; text-transform: uppercase; }
+nav.links a { text-decoration: none; padding-block: 4px; border-bottom: 1px solid transparent; }
+nav.links a:hover { border-color: var(--brass); }
+nav.links a.cta { color: var(--brass); }
+
+/* Hero */
+.hero { padding-block: clamp(48px, 8vw, 96px) 24px; }
+.hero h1 { font-size: var(--step-4); letter-spacing: -.01em; margin-top: 18px; }
+.hero h1 em { color: var(--brass); }
+.hero-sub { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 32px; margin-top: 32px; align-items: end; }
+.hero-sub p { max-width: 52ch; color: var(--muted); font-size: var(--step-1); font-weight: 300; }
+.hero-rate { justify-self: end; text-align: right; }
+.hero-rate .num { font-family: var(--display); font-size: var(--step-3); }
+.hero-rate .lbl { font-size: .8rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.skyline { margin-top: clamp(32px, 6vw, 64px); }
+.skyline svg { width: 100%; height: auto; display: block; }
+.skyline path, .skyline line { fill: none; stroke: var(--brass); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.skyline .base { stroke: var(--line); }
+.skyline .water { stroke: var(--line); }
+.skyline text { fill: var(--muted); font-family: var(--body); font-size: 11px; letter-spacing: .3em; }
+@media (prefers-reduced-motion: no-preference) {
+  .skyline .draw { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 2.6s cubic-bezier(.6,.1,.2,1) .2s forwards; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+}
+
+/* Sections */
+section.block { padding-block: clamp(56px, 9vw, 112px); border-top: 1px solid var(--line); }
+.section-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px 48px; align-items: end; margin-bottom: clamp(32px, 5vw, 56px); }
+.section-head h2 { font-size: var(--step-3); margin-top: 12px; }
+.section-head p { color: var(--muted); max-width: 52ch; }
+
+/* Residences */
+.cities { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--ink); }
+.city { padding: 28px 24px 32px 0; display: flex; flex-direction: column; gap: 14px; border-right: 1px solid var(--line); }
+.city + .city { padding-left: 24px; }
+.city:last-child { border-right: 0; }
+.city .clock { font-variant-numeric: tabular-nums; font-size: .82rem; letter-spacing: .12em; color: var(--brass); text-transform: uppercase; }
+.city h3 { font-size: var(--step-2); }
+.city .addr { font-size: .9rem; color: var(--muted); }
+.city .sig { font-size: .98rem; }
+.city dl { margin: auto 0 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: .82rem; padding-top: 14px; border-top: 1px solid var(--line); }
+.city dt { color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-size: .72rem; padding-top: 2px; }
+.city dd { margin: 0; font-variant-numeric: tabular-nums; }
+
+/* Suites */
+.suites { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.suite { background: var(--surface); padding: 32px 28px; display: flex; flex-direction: column; gap: 16px; }
+.suite.feature { background: var(--deep); color: var(--on-deep); }
+.suite.feature .muted, .suite.feature li { color: color-mix(in srgb, var(--on-deep) 78%, transparent); }
+.suite.feature .price { color: #d6b375; }
+.suite h3 { font-size: var(--step-2); }
+.suite .muted { color: var(--muted); font-size: .95rem; }
+.suite .price { font-family: var(--display); font-size: var(--step-3); color: var(--brass); font-variant-numeric: lining-nums; }
+.suite .price small { font-family: var(--body); font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; margin-left: 6px; }
+.suite ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; font-size: .92rem; }
+.suite li { padding-left: 18px; position: relative; }
+.suite li::before { content: ""; position: absolute; left: 0; top: .72em; width: 8px; height: 1px; background: currentColor; }
+.suite .specs { margin-top: auto; display: flex; gap: 20px; font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; padding-top: 16px; border-top: 1px solid currentColor; opacity: .85; flex-wrap: wrap; }
+
+/* Amenities */
+.signature { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--ink); }
+.amen { padding: 32px 32px 36px 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 24px; }
+.amen:nth-child(odd) { border-right: 1px solid var(--line); }
+.amen:nth-child(even) { padding-left: 32px; padding-right: 0; }
+.amen .fig { font-family: var(--display); font-size: var(--step-3); color: var(--brass); grid-row: span 3; min-width: 4.2ch; font-variant-numeric: lining-nums; line-height: 1; }
+.amen .fig small { display: block; font-family: var(--body); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+.amen h3 { font-size: var(--step-2); }
+.amen p { color: var(--muted); }
+.amen .where { font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
+.more { margin-top: clamp(40px, 6vw, 64px); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; }
+.more h4 { margin: 0 0 12px; font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; color: var(--brass); font-weight: 500; }
+.more ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.more li { font-size: .98rem; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+.more li span { display: block; font-size: .84rem; color: var(--muted); }
+
+/* Reservation */
+.reserve { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 48px); align-items: start; }
+form.book { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.field { display: grid; gap: 6px; min-width: 0; }
+.field.full { grid-column: 1 / -1; }
+.field label, fieldset legend { font-size: .74rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+.field input, .field select {
+  font: inherit; color: var(--ink); background: transparent; border: 0; border-bottom: 1px solid var(--ink);
+  padding: 10px 0; border-radius: 0; width: 100%; min-width: 0;
+}
+.field select option { background: var(--bg); color: var(--ink); }
+fieldset { border: 0; padding: 0; margin: 0; grid-column: 1 / -1; display: grid; gap: 10px; }
+.branches { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.branches input { position: absolute; opacity: 0; pointer-events: none; }
+.branches label {
+  border: 1px solid var(--line); padding: 12px 10px; text-align: center; cursor: pointer;
+  font-family: var(--display); font-size: 1.05rem; text-transform: none; letter-spacing: 0; color: var(--ink);
+}
+.branches input:checked + label { border-color: var(--brass); background: var(--surface); color: var(--brass); }
+.branches input:focus-visible + label { outline: 2px solid var(--brass); outline-offset: 2px; }
+.check { grid-column: 1 / -1; display: flex; gap: 10px; align-items: center; font-size: .95rem; }
+.check input { accent-color: var(--brass); width: 18px; height: 18px; }
+button.submit {
+  grid-column: 1 / -1; font: inherit; font-size: .84rem; letter-spacing: .22em; text-transform: uppercase; font-weight: 500;
+  background: var(--ink); color: var(--bg); border: 0; padding: 18px 24px; cursor: pointer; justify-self: start;
+}
+button.submit:hover { background: var(--brass); }
+.err { grid-column: 1 / -1; color: #b3412f; font-size: .92rem; }
+.summary { background: var(--deep); color: var(--on-deep); padding: 32px 28px; display: grid; gap: 14px; }
+.summary .eyebrow { color: #d6b375; }
+.summary h3 { font-size: var(--step-2); }
+.summary .row { display: flex; justify-content: space-between; gap: 16px; font-size: .95rem; font-variant-numeric: tabular-nums; border-bottom: 1px solid color-mix(in srgb, var(--on-deep) 18%, transparent); padding-bottom: 10px; }
+.summary .row span:first-child { color: color-mix(in srgb, var(--on-deep) 72%, transparent); }
+.summary .total { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding-top: 6px; }
+.summary .total b { font-family: var(--display); font-weight: 400; font-size: var(--step-3); color: #d6b375; font-variant-numeric: tabular-nums lining-nums; }
+.summary .note { font-size: .82rem; color: color-mix(in srgb, var(--on-deep) 66%, transparent); }
+.confirm { border: 1px solid #d6b375; padding: 16px; font-size: .95rem; }
+
+footer { border-top: 1px solid var(--line); padding-block: 40px; font-size: .9rem; color: var(--muted); }
+footer .wrap { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+footer b { display: block; font-family: var(--display); font-weight: 400; font-size: 1.15rem; color: var(--ink); margin-bottom: 4px; }
+footer .legal { grid-column: 1 / -1; padding-top: 24px; border-top: 1px solid var(--line); font-size: .8rem; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+@media (max-width: 960px) {
+  .cities { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .city:nth-child(2) { border-right: 0; }
+  .city:nth-child(3) { padding-left: 0; }
+  .city:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .suites { grid-template-columns: minmax(0, 1fr); }
+  .more { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .reserve { grid-template-columns: minmax(0, 1fr); }
+  footer .wrap { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 680px) {
+  .hero-sub, .section-head { grid-template-columns: minmax(0, 1fr); }
+  .hero-rate { justify-self: start; text-align: left; }
+  .cities { grid-template-columns: minmax(0, 1fr); }
+  .city, .city + .city { padding: 24px 0; border-right: 0; }
+  .city + .city { border-top: 1px solid var(--line); }
+  .signature { grid-template-columns: minmax(0, 1fr); }
+  .amen, .amen:nth-child(even) { padding: 28px 0; border-right: 0; }
+  .more { grid-template-columns: minmax(0, 1fr); }
+  form.book { grid-template-columns: minmax(0, 1fr); }
+  .branches { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  footer .wrap { grid-template-columns: minmax(0, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="Azlan Residential Suites, home">
+      <span class="mark-monogram">A</span>
+      <span class="mark-name">Azlan<small>Residential Suites</small></span>
+    </a>
+    <nav class="links" aria-label="Main">
+      <a href="#residences">Residences</a>
+      <a href="#suites">Suites</a>
+      <a href="#amenities">Amenities</a>
+      <a href="#reserve" class="cta">Reserve</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero wrap">
+    <p class="eyebrow">Dubai · Paris · Venice · New York</p>
+    <h1>Four cities.<br>One <em>Azlan</em> standard.</h1>
+    <div class="hero-sub">
+      <p>Azlan Residential Suites is a collection of luxury resorts where every stay is a private residence, with a personal butler, a water park, thermal spa and pools under one roof.</p>
+      <div class="hero-rate">
+        <div class="lbl">Suites from</div>
+        <div class="num">$2,500</div>
+        <div class="lbl">per night, all branches</div>
+      </div>
+    </div>
+    <div class="skyline" aria-hidden="true">
+      <svg viewBox="0 0 1200 236" preserveAspectRatio="xMidYMid meet">
+        <line class="base" x1="0" y1="200" x2="1200" y2="200"/>
+        <!-- Dubai: Burj Khalifa and Burj Al Arab -->
+        <path class="draw" pathLength="1" d="M118 200 L123 150 L129 150 L134 104 L140 104 L144 62 L148 62 L150 12 L152 62 L156 62 L160 104 L166 104 L171 150 L177 150 L182 200"/>
+        <path class="draw" pathLength="1" d="M212 200 L222 92 Q262 118 272 200 M222 92 L222 70 M222 120 Q245 135 256 160"/>
+        <path class="draw" pathLength="1" d="M70 200 L70 168 L92 168 L92 200 M286 200 L286 176 L304 176 L304 200"/>
+        <!-- Paris: Eiffel Tower -->
+        <path class="draw" pathLength="1" d="M380 200 Q420 140 432 72 L436 32 L440 14 L444 32 L448 72 Q460 140 500 200 M406 200 Q440 150 474 200 M416 130 L464 130 M428 86 L452 86 M436 32 L444 32"/>
+        <path class="draw" pathLength="1" d="M336 200 L336 160 L360 150 L360 200 M520 200 L520 156 L548 156 L548 200"/>
+        <!-- Venice: Campanile, Salute dome, gondola -->
+        <path class="draw" pathLength="1" d="M640 200 L640 74 L660 74 L660 200 M636 74 L650 42 L664 74 M650 42 L650 26 M640 96 L660 96"/>
+        <path class="draw" pathLength="1" d="M700 200 L700 150 Q740 96 780 150 L780 200 M736 108 Q740 92 744 108 M740 92 L740 82 M690 150 L790 150"/>
+        <path class="draw" pathLength="1" d="M796 190 Q846 204 896 182 M884 186 L892 170 M852 194 L862 146 M862 146 L868 196"/>
+        <path class="water" d="M610 214 Q625 210 640 214 T670 214 M720 220 Q735 216 750 220 T780 220 M820 214 Q835 210 850 214 T880 214"/>
+        <!-- New York: Empire State, Chrysler, towers -->
+        <path class="draw" pathLength="1" d="M976 200 L976 112 L986 112 L986 82 L993 82 L993 56 L998 56 L1000 24 L1002 56 L1007 56 L1007 82 L1014 82 L1014 112 L1024 112 L1024 200"/>
+        <path class="draw" pathLength="1" d="M1064 200 L1064 102 Q1080 60 1096 102 L1096 200 M1080 70 L1080 38 M1070 90 Q1080 76 1090 90"/>
+        <path class="draw" pathLength="1" d="M938 200 L938 150 L960 150 L960 200 M1112 200 L1112 128 L1140 128 L1140 200 M1152 200 L1152 160 L1178 160 L1178 200"/>
+        <text x="150" y="232" text-anchor="middle">DUBAI</text>
+        <text x="440" y="232" text-anchor="middle">PARIS</text>
+        <text x="740" y="232" text-anchor="middle">VENICE</text>
+        <text x="1060" y="232" text-anchor="middle">NEW YORK</text>
+      </svg>
+    </div>
+  </section>
+
+  <section class="block" id="residences">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">The residences</p>
+          <h2>Four addresses, each with its own signature.</h2>
+        </div>
+        <p>Every Azlan branch has the full collection of amenities. Each one also adds something only its city can offer. Local times update live, so you always know when the concierge is taking breakfast orders.</p>
+      </div>
+      <div class="cities" id="cities"></div>
+    </div>
+  </section>
+
+  <section class="block" id="suites">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Suites</p>
+          <h2>Residences by the night.</h2>
+        </div>
+        <p>All suites include a dedicated butler, daily breakfast, airport transfers and unlimited access to the water park and spa. Rates are the same in every city.</p>
+      </div>
+      <div class="suites">
+        <article class="suite feature">
+          <p class="eyebrow">Most booked</p>
+          <h3>Signature Suite</h3>
+          <div class="price">$2,500<small>/ night</small></div>
+          <p class="muted">A one-bedroom residence with a separate salon, dressing room and a marble bathroom with soaking tub and steam shower.</p>
+          <ul>
+            <li>King bed with hand-finished linen</li>
+            <li>Private terrace with city or water view</li>
+            <li>Butler on call around the clock</li>
+          </ul>
+          <div class="specs"><span>140 m²</span><span>Up to 3 guests</span></div>
+        </article>
+        <article class="suite">
+          <p class="eyebrow">For families</p>
+          <h3>Panorama Residence</h3>
+          <div class="price">$3,400<small>/ night</small></div>
+          <p class="muted">Two bedrooms around a corner living room with floor-to-ceiling windows and a dining table for eight.</p>
+          <ul>
+            <li>Two en-suite bedrooms</li>
+            <li>Kitchen with in-suite chef service</li>
+            <li>Private plunge pool on the terrace</li>
+          </ul>
+          <div class="specs"><span>230 m²</span><span>Up to 5 guests</span></div>
+        </article>
+        <article class="suite">
+          <p class="eyebrow">Top floor</p>
+          <h3>Azlan Penthouse</h3>
+          <div class="price">$7,800<small>/ night</small></div>
+          <p class="muted">The whole top floor: three bedrooms, a private spa room, a rooftop pool and a dedicated chauffeur for your stay.</p>
+          <ul>
+            <li>Rooftop infinity pool</li>
+            <li>Private sauna and massage room</li>
+            <li>Chauffeur and car on standby</li>
+          </ul>
+          <div class="specs"><span>480 m²</span><span>Up to 7 guests</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="amenities">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Amenities</p>
+          <h2>Water, warmth and quiet.</h2>
+        </div>
+        <p>Four signature facilities sit at the heart of every resort. Around them is everything else you would expect from a stay at this level.</p>
+      </div>
+
+      <div class="signature">
+        <article class="amen">
+          <div class="fig">14<small>slides</small></div>
+          <h3>Azlan Water Park</h3>
+          <p>A lazy river, wave pool, family slides and a 22-metre drop slide. Open-air in Dubai and under a glass roof in Paris, Venice and New York.</p>
+          <p class="where">Open 09:00 – 19:00 · Free for guests</p>
+        </article>
+        <article class="amen">
+          <div class="fig">90°<small>Celsius</small></div>
+          <h3>Finnish Sauna</h3>
+          <p>Cedar-lined saunas with a cold plunge at 8 °C and a snow room next door, plus a Turkish hammam for a gentler heat.</p>
+          <p class="where">Open 07:00 – 23:00 · Adults only</p>
+        </article>
+        <article class="amen">
+          <div class="fig">28°<small>Celsius</small></div>
+          <h3>Pools</h3>
+          <p>A 50-metre heated infinity pool, a quiet adults-only pool and a shallow children's lagoon, with cabanas and poolside service.</p>
+          <p class="where">Open 06:30 – 22:00 · Cabanas on request</p>
+        </article>
+        <article class="amen">
+          <div class="fig">12<small>treatment rooms</small></div>
+          <h3>Massage &amp; Spa</h3>
+          <p>Deep tissue, hot stone, Thai and four-hands massage, couples' suites and facials. Treatments can also be booked in your residence.</p>
+          <p class="where">Open 08:00 – 22:00 · In-suite until midnight</p>
+        </article>
+      </div>
+
+      <div class="more">
+        <div>
+          <h4>Wellness</h4>
+          <ul>
+            <li>Steam room &amp; hammam<span>Traditional scrub rituals</span></li>
+            <li>Cryotherapy &amp; ice baths<span>Recovery suite with a therapist</span></li>
+            <li>Fitness &amp; Pilates studio<span>Personal trainers on request</span></li>
+            <li>Yoga pavilion<span>Sunrise and sunset classes</span></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Dining</h4>
+          <ul>
+            <li>Fine-dining restaurant<span>Tasting menu, chef's table</span></li>
+            <li>All-day brasserie<span>Breakfast served until 13:00</span></li>
+            <li>Wine cellar &amp; sommelier<span>Private tastings</span></li>
+            <li>Rooftop bar<span>Cocktails and live music</span></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Service</h4>
+          <ul>
+            <li>24-hour butler<span>One per residence floor</span></li>
+            <li>Chauffeured transfers<span>Airport pickup included</span></li>
+            <li>Helipad<span>Dubai and New York</span></li>
+            <li>Concierge &amp; personal shopper<span>Reservations across the city</span></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Leisure</h4>
+          <ul>
+            <li>Kids' club<span>Ages 3 to 12, with supervised play</span></li>
+            <li>Private cinema<span>Screenings for up to 20 guests</span></li>
+            <li>Tennis &amp; padel courts<span>Coaching available</span></li>
+            <li>Beauty salon<span>Hair, nails and grooming</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="reserve">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Reservations</p>
+          <h2>Plan your stay.</h2>
+        </div>
+        <p>Choose a branch, a suite and your dates. The estimate updates as you go, including local taxes for each city.</p>
+      </div>
+      <div class="reserve">
+        <form class="book" id="book" novalidate>
+          <fieldset>
+            <legend>Branch</legend>
+            <div class="branches" id="branches"></div>
+          </fieldset>
+          <div class="field full">
+            <label for="suite">Suite</label>
+            <select id="suite">
+              <option value="signature">Signature Suite · $2,500 / night</option>
+              <option value="panorama">Panorama Residence · $3,400 / night</option>
+              <option value="penthouse">Azlan Penthouse · $7,800 / night</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="checkin">Check-in</label>
+            <input type="date" id="checkin">
+          </div>
+          <div class="field">
+            <label for="checkout">Check-out</label>
+            <input type="date" id="checkout">
+          </div>
+          <div class="field">
+            <label for="adults">Adults</label>
+            <select id="adults"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option></select>
+          </div>
+          <div class="field">
+            <label for="children">Children</label>
+            <select id="children"><option selected>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select>
+          </div>
+          <div class="field full">
+            <label for="guestname">Full name</label>
+            <input type="text" id="guestname" autocomplete="name" placeholder="As shown on your passport">
+          </div>
+          <label class="check"><input type="checkbox" id="spa"> Add a welcome spa ritual for two ($450)</label>
+          <p class="err" id="err" hidden></p>
+          <button class="submit" type="submit">Request reservation</button>
+        </form>
+
+        <aside class="summary" aria-live="polite">
+          <p class="eyebrow">Your stay</p>
+          <h3 id="s-title">Signature Suite, Dubai</h3>
+          <div class="row"><span>Dates</span><span id="s-dates">–</span></div>
+          <div class="row"><span id="s-rate-lbl">Room rate</span><span id="s-rate">–</span></div>
+          <div class="row"><span>Spa ritual</span><span id="s-spa">–</span></div>
+          <div class="row"><span id="s-tax-lbl">Taxes &amp; fees</span><span id="s-tax">–</span></div>
+          <div class="total"><span>Estimated total</span><b id="s-total">–</b></div>
+          <p class="note">Check-in from 15:00, check-out until 12:00. Prices are in US dollars.</p>
+          <div class="confirm" id="confirm" hidden></div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap" id="foot"></div>
+</footer>
+
+<script>
+const CITIES = [
+  { id: "dubai", name: "Dubai", tz: "Asia/Dubai", area: "Palm Jumeirah, East Crescent",
+    sig: "A private beach on the Arabian Gulf and the largest open-air water park in the collection.",
+    coords: "25.11° N, 55.14° E", climate: "Warm all year", suites: 96, tax: 0.20, taxLbl: "Service, VAT & tourism dirham (20%)" },
+  { id: "paris", name: "Paris", tz: "Europe/Paris", area: "Avenue Montaigne, 8th arrondissement",
+    sig: "A heated rooftop pool facing the Eiffel Tower, and a couture fitting room with on-call stylists.",
+    coords: "48.87° N, 2.30° E", climate: "Best May to Sept.", suites: 64, tax: 0.12, taxLbl: "VAT & taxe de séjour (12%)" },
+  { id: "venice", name: "Venice", tz: "Europe/Rome", area: "Grand Canal, Dorsoduro",
+    sig: "A private water-taxi dock and a thermal spa set inside a restored 16th-century palazzo.",
+    coords: "45.43° N, 12.33° E", climate: "Best April to Oct.", suites: 48, tax: 0.12, taxLbl: "VAT & city tax (12%)" },
+  { id: "newyork", name: "New York", tz: "America/New_York", area: "Central Park South, Manhattan",
+    sig: "A sky spa on the 60th floor over Central Park, and a rooftop helipad for arrivals.",
+    coords: "40.77° N, 73.98° W", climate: "Best Sept. to Dec.", suites: 120, tax: 0.148, taxLbl: "NY State & City hotel tax (14.8%)" }
+];
+const SUITES = {
+  signature: { name: "Signature Suite", rate: 2500, max: 3 },
+  panorama: { name: "Panorama Residence", rate: 3400, max: 5 },
+  penthouse: { name: "Azlan Penthouse", rate: 7800, max: 7 }
+};
+const usd = n => "$" + Math.round(n).toLocaleString("en-US");
+
+// Residences
+const citiesEl = document.getElementById("cities");
+citiesEl.innerHTML = CITIES.map(c => `
+  <article class="city">
+    <p class="clock" data-tz="${c.tz}">${c.name} · --:--</p>
+    <h3>${c.name}</h3>
+    <p class="addr">${c.area}</p>
+    <p class="sig">${c.sig}</p>
+    <dl>
+      <dt>Suites</dt><dd>${c.suites}</dd>
+      <dt>Coordinates</dt><dd>${c.coords}</dd>
+      <dt>Season</dt><dd>${c.climate}</dd>
+    </dl>
+  </article>`).join("");
+
+function tick() {
+  document.querySelectorAll(".clock").forEach(el => {
+    const c = CITIES.find(x => x.tz === el.dataset.tz);
+    try {
+      const t = new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit", timeZone: c.tz }).format(new Date());
+      el.textContent = `Local time ${t}`;
+    } catch (e) { el.textContent = c.name; }
+  });
+}
+tick(); setInterval(tick, 15000);
+
+// Footer
+document.getElementById("foot").innerHTML = CITIES.map(c =>
+  `<div><b>Azlan ${c.name}</b>${c.area}<br>Concierge open 24 hours</div>`).join("") +
+  `<div class="legal"><span>© 2026 Azlan Residential Suites</span><span>Dubai · Paris · Venice · New York</span></div>`;
+
+// Reservation
+const branchesEl = document.getElementById("branches");
+branchesEl.innerHTML = CITIES.map((c, i) => `
+  <div><input type="radio" name="branch" id="b-${c.id}" value="${c.id}" ${i === 0 ? "checked" : ""}>
+  <label for="b-${c.id}">${c.name}</label></div>`).join("");
+
+const $ = id => document.getElementById(id);
+const iso = d => d.toISOString().slice(0, 10);
+const today = new Date();
+const inD = new Date(today); inD.setDate(inD.getDate() + 30);
+const outD = new Date(inD); outD.setDate(outD.getDate() + 4);
+$("checkin").value = iso(inD); $("checkin").min = iso(today);
+$("checkout").value = iso(outD); $("checkout").min = iso(today);
+
+const fmtDate = s => new Date(s + "T12:00:00").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+
+function state() {
+  const city = CITIES.find(c => c.id === (document.querySelector('input[name="branch"]:checked') || {}).value) || CITIES[0];
+  const suite = SUITES[$("suite").value];
+  const ci = $("checkin").value, co = $("checkout").value;
+  const nights = ci && co ? Math.round((new Date(co + "T12:00:00") - new Date(ci + "T12:00:00")) / 86400000) : 0;
+  const guests = +$("adults").value + +$("children").value;
+  return { city, suite, ci, co, nights, guests, spa: $("spa").checked };
+}
+
+function update() {
+  const s = state();
+  $("s-title").textContent = `${s.suite.name}, ${s.city.name}`;
+  $("confirm").hidden = true;
+  if (s.nights > 0) {
+    const room = s.suite.rate * s.nights;
+    const spa = s.spa ? 450 : 0;
+    const tax = (room + spa) * s.city.tax;
+    $("s-dates").textContent = `${fmtDate(s.ci)} – ${fmtDate(s.co)}`;
+    $("s-rate-lbl").textContent = `${usd(s.suite.rate)} × ${s.nights} night${s.nights > 1 ? "s" : ""}`;
+    $("s-rate").textContent = usd(room);
+    $("s-spa").textContent = spa ? usd(spa) : "Not added";
+    $("s-tax-lbl").textContent = s.city.taxLbl;
+    $("s-tax").textContent = usd(tax);
+    $("s-total").textContent = usd(room + spa + tax);
+  } else {
+    ["s-dates", "s-rate", "s-spa", "s-tax", "s-total"].forEach(id => $(id).textContent = "–");
+    $("s-rate-lbl").textContent = "Room rate";
+  }
+}
+
+$("book").addEventListener("input", update);
+$("book").addEventListener("change", update);
+$("book").addEventListener("submit", e => {
+  e.preventDefault();
+  const s = state(), err = $("err");
+  let msg = "";
+  if (!s.ci || !s.co) msg = "Choose both a check-in and a check-out date.";
+  else if (s.nights < 1) msg = "Check-out must be at least one night after check-in.";
+  else if (s.guests > s.suite.max) msg = `The ${s.suite.name} sleeps up to ${s.suite.max} guests. Choose a larger suite or fewer guests.`;
+  else if (!$("guestname").value.trim()) msg = "Enter the name the reservation should be under.";
+  err.textContent = msg; err.hidden = !msg;
+  if (msg) return;
+  const c = $("confirm");
+  c.textContent = `Thank you, ${$("guestname").value.trim()}. Your request for the ${s.suite.name} at Azlan ${s.city.name}, ${fmtDate(s.ci)} to ${fmtDate(s.co)}, is ready. This is a preview site, so the request has not been sent to a reservations team.`;
+  c.hidden = false;
+});
+update();
+</script>
+</body>
+</html>
